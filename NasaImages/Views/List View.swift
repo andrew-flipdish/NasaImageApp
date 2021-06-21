@@ -46,7 +46,7 @@ struct ListView: View {
     }
     
     func loadData(){
-        caller.callAPIDate(startDate: startDate) { response in
+        caller.callAPIWeek(startDate: startDate) { response in
             guard let response = response else {
                 return
 
