@@ -20,7 +20,7 @@ struct ListView: View {
 
         NavigationView{
             List{
-                ForEach(results, id: \.id) { item in
+                ForEach(results, id: \.date) { item in
                     NavigationLink(
                         destination: NasaImageView(nasaImage: item),
                         label: {

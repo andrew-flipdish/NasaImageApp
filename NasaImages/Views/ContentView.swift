@@ -10,65 +10,33 @@ import URLImage
 
         
 struct NasaImageView: View {
-    let nasaImage: NasaResponse
+    var nasaImage: NasaResponse
+    
     @State var displayMore: Bool = false
     
     var body: some View {
         GeometryReader { geometry in
+            ZStack{
+                Image(systemName: "placeholder image")
+                    .data(url: URL(string: nasaImage.url)!)
+                        .resizable()
+                        .aspectRatio(geometry.size, contentMode: .fill)
+                        .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+                
+            }
             if displayMore {
-                ZStack{
-                    URLImage(URL(string: nasaImage.url)!) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(geometry.size, contentMode: .fill)
-                            .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-                    }
-                }
                     VStack{
                         Button("Show Less") {
                             withAnimation{
                                 displayMore.toggle()
                             }
                         }.foregroundColor(.white)
-                        Text(String(nasaImage.title))
-                            .font(.largeTitle)
-                            .bold()
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.white)
-                        Text(String(nasaImage.date))
-                            .foregroundColor(.white)
-                            .italic()
-                            .font(.title)
-                            .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
-                        ScrollView{
-                            Text(String(nasaImage.explanation))
-                                .foregroundColor(.white)
-                                .font(.headline)
-                                .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
-                        }
-                        
+                        MoreDetailsView(nasaImage: nasaImage)
                     }.transition(.move(edge: .bottom))
                         
                     } else {
-                    ZStack{
-                        URLImage(URL(string: nasaImage.url)!) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(geometry.size, contentMode: .fill)
-                                .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-                        }
-                    }
                         VStack{
-                            Text(String(nasaImage.title))
-                                .font(.largeTitle)
-                                .bold()
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(.white)
-                            Text(String(nasaImage.date))
-                                .foregroundColor(.white)
-                                .italic()
-                                .font(.title)
-                                .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
+                            LessDetailsView(nasaImage: nasaImage)
                             Button("Show More") {
                                 withAnimation{
                                     displayMore.toggle()
@@ -79,6 +47,58 @@ struct NasaImageView: View {
         }
         
 
+    }
+}
+
+struct MoreDetailsView: View {
+    var nasaImage: NasaResponse
+    
+    var body: some View {
+        Text(String(nasaImage.title))
+            .font(.title)
+            .kerning(/*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
+            .bold()
+            .multilineTextAlignment(.center)
+            .foregroundColor(.white)
+        Text(String(nasaImage.date))
+            .foregroundColor(.white)
+            .italic()
+            .font(.title2)
+            .kerning(/*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
+        ScrollView{
+            Text(String(nasaImage.explanation))
+                .foregroundColor(.white)
+                .font(.headline)
+                .kerning(/*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/)
+                .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
+        }
+    }
+}
+
+struct LessDetailsView: View {
+    var nasaImage: NasaResponse
+    
+    var body: some View {
+        Text(String(nasaImage.title))
+            .font(.title)
+            .bold()
+            .multilineTextAlignment(.center)
+            .foregroundColor(.white)
+        Text(String(nasaImage.date))
+            .foregroundColor(.white)
+            .italic()
+            .font(.title2)
+    }
+}
+
+extension Image {
+    func data(url:URL) -> Self {
+        if let data = try? Data(contentsOf: url) {
+            return Image(uiImage: UIImage(data: data)!)
+                .resizable()
+    }
+    return self
+        .resizable()
     }
 }
 
