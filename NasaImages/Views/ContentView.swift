@@ -15,35 +15,39 @@ struct NasaImageView: View {
     @State var displayMore: Bool = false
     
     var body: some View {
-        GeometryReader { geometry in
-            ZStack{
-                Image(systemName: "placeholder image")
-                    .data(url: URL(string: nasaImage.url)!)
-                        .resizable()
-                        .aspectRatio(geometry.size, contentMode: .fill)
+        VStack {
+            GeometryReader { geometry in
+                ZStack{
+                    Image(systemName: "placeholder image")
+                        .data(url: URL(string: nasaImage.url)!)
+                            .resizable()
+                            .aspectRatio(geometry.size, contentMode: .fill)
                         .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-                
-            }
-            if displayMore {
-                    VStack{
-                        Button("Show Less") {
-                            withAnimation{
-                                displayMore.toggle()
-                            }
-                        }.foregroundColor(.white)
-                        MoreDetailsView(nasaImage: nasaImage)
-                    }.transition(.move(edge: .bottom))
-                        
-                    } else {
-                        VStack{
-                            LessDetailsView(nasaImage: nasaImage)
-                            Button("Show More") {
+                }
+                VStack{
+                    if displayMore {
+                        Group{
+                            Button("Show Less") {
                                 withAnimation{
                                     displayMore.toggle()
                                 }
                             }.foregroundColor(.white)
-                        }.transition(.move(edge: .top)).offset(y: 330.0)
-                }
+                            MoreDetailsView(nasaImage: nasaImage)
+                        }
+                            } else {
+                                Group{
+                                    LessDetailsView(nasaImage: nasaImage)
+                                    Button("Show More") {
+                                        withAnimation{
+                                            displayMore.toggle()
+                                        }
+                                    }.foregroundColor(.white)
+                                }
+                        }
+                    LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: .top, endPoint: .bottom).edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+                    }.transition(.slide)
+                
+            }
         }
         
 
@@ -79,15 +83,15 @@ struct LessDetailsView: View {
     var nasaImage: NasaResponse
     
     var body: some View {
-        Text(String(nasaImage.title))
-            .font(.title)
-            .bold()
-            .multilineTextAlignment(.center)
-            .foregroundColor(.white)
-        Text(String(nasaImage.date))
-            .foregroundColor(.white)
-            .italic()
-            .font(.title2)
+            Text(String(nasaImage.title))
+                .font(.title)
+                .bold()
+                .multilineTextAlignment(.center)
+                .foregroundColor(.white)
+            Text(String(nasaImage.date))
+                .foregroundColor(.white)
+                .italic()
+                .font(.title2)
     }
 }
 
