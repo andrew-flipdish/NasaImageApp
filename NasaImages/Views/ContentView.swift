@@ -11,7 +11,7 @@ import URLImage
         
 struct NasaImageView: View {
     let nasaImage: NasaResponse
-    
+    @State var isModal: Bool = false
     
     var body: some View {
         
@@ -24,7 +24,6 @@ struct NasaImageView: View {
                             .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
                     }
                 }
-                ScrollView{
                     VStack{
                         Text(String(nasaImage.title))
                             .font(.largeTitle)
@@ -35,13 +34,18 @@ struct NasaImageView: View {
                             .foregroundColor(.white)
                             .italic()
                             .font(.title)
-                        Text(String(nasaImage.explanation))
-                            .font(.title2)
-                            .kerning(2.0)
-                            .foregroundColor(.white)
-                            
-                    }
-                }
+                            .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
+                    }.onTapGesture(perform: {
+                        isModal = true
+                    }).offset(y: 350.0).sheet(isPresented: $isModal, content: {
+                        ScrollView{
+                            Text(String(nasaImage.explanation))
+                                                        .font(.title2)
+                                                        .kerning(2.0)
+                                                        .foregroundColor(.black)
+                                .padding()
+                        }
+                    })
             }
         
     }
