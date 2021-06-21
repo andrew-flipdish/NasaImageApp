@@ -18,12 +18,21 @@ struct ListView: View {
     
     var body: some View {
 
-        Text(String(startDate)).onAppear(perform: getDate)
-        ScrollView{
-            ForEach(results, id: \.date) { item in
-                Text(String(item.title)).frame(width: screenSize.width, height: 50, alignment: .leading).border(Color.black)
-            }
-        }
+        NavigationView{
+            List{
+                ForEach(results, id: \.id) { item in
+                    NavigationLink(
+                        destination: NasaImageView(nasaImage: item),
+                        label: {
+                            Text(String("\(item.date)"))
+                                .font(.body)
+                                .foregroundColor(.black)
+                                .frame(width: screenSize.width, height: 30, alignment: .leading)
+                        })
+                }
+            }.navigationTitle("Nasa APOD")
+        }.onAppear(perform: getDate)
+        
         
     }
     

@@ -10,8 +10,8 @@ import URLImage
 
         
 struct NasaImageView: View {
-    @State var nasaImage: NasaResponse = NasaResponse()
-    @State var caller: ApiCaller = ApiCaller()
+    let nasaImage: NasaResponse
+    
     
     var body: some View {
         
@@ -30,38 +30,30 @@ struct NasaImageView: View {
                             .font(.largeTitle)
                             .bold()
                             .multilineTextAlignment(.center)
-                            //.foregroundColor(.white)
+                            .foregroundColor(.white)
                         Text(String(nasaImage.date))
-                            //.foregroundColor(.white)
+                            .foregroundColor(.white)
                             .italic()
                             .font(.title)
                         Text(String(nasaImage.explanation))
                             .font(.title2)
                             .kerning(2.0)
-                            //.foregroundColor(.white)
+                            .foregroundColor(.white)
                             
                     }
                 }
-            }.onAppear(perform: loadData)
-        
-    }
-    
-    func loadData(){
-        caller.callAPI { response in
-            guard let response = response else {
-                return
-
             }
-            nasaImage = response
-        }
+        
     }
 
 }
 
 struct ContentView_Previews: PreviewProvider {
+    
+    let image: NasaResponse = NasaResponse()
     static var previews: some View {
         Group {
-            NasaImageView()
+            NasaImageView(nasaImage: NasaResponse())
         }
     }
 }

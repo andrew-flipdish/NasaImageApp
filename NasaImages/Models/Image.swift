@@ -8,6 +8,7 @@
 import Foundation
 
 struct NasaResponse: Codable {
+    let id: UUID = UUID()
     var date: String = String("1901/01/01")
     var url: String = String("https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg")
     var title: String = String("Lorem ipsum dolor sit amet")
