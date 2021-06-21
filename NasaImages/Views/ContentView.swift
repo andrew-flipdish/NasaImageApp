@@ -11,11 +11,11 @@ import URLImage
         
 struct NasaImageView: View {
     let nasaImage: NasaResponse
-    @State var isModal: Bool = false
+    @State var displayMore: Bool = false
     
     var body: some View {
-        
-            GeometryReader { geometry in
+        GeometryReader { geometry in
+            if displayMore {
                 ZStack{
                     URLImage(URL(string: nasaImage.url)!) { image in
                         image
@@ -25,6 +25,11 @@ struct NasaImageView: View {
                     }
                 }
                     VStack{
+                        Button("Show Less") {
+                            withAnimation{
+                                displayMore.toggle()
+                            }
+                        }.foregroundColor(.white)
                         Text(String(nasaImage.title))
                             .font(.largeTitle)
                             .bold()
@@ -35,21 +40,46 @@ struct NasaImageView: View {
                             .italic()
                             .font(.title)
                             .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
-                    }.onTapGesture(perform: {
-                        isModal = true
-                    }).offset(y: 350.0).sheet(isPresented: $isModal, content: {
                         ScrollView{
                             Text(String(nasaImage.explanation))
-                                                        .font(.title2)
-                                                        .kerning(2.0)
-                                                        .foregroundColor(.black)
-                                .padding()
+                                .foregroundColor(.white)
+                                .font(.headline)
+                                .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
                         }
-                    })
-            }
+                        
+                    }.transition(.move(edge: .bottom))
+                        
+                    } else {
+                    ZStack{
+                        URLImage(URL(string: nasaImage.url)!) { image in
+                            image
+                                .resizable()
+                                .aspectRatio(geometry.size, contentMode: .fill)
+                                .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+                        }
+                    }
+                        VStack{
+                            Text(String(nasaImage.title))
+                                .font(.largeTitle)
+                                .bold()
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.white)
+                            Text(String(nasaImage.date))
+                                .foregroundColor(.white)
+                                .italic()
+                                .font(.title)
+                                .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
+                            Button("Show More") {
+                                withAnimation{
+                                    displayMore.toggle()
+                                }
+                            }.foregroundColor(.white)
+                        }.transition(.move(edge: .top)).offset(y: 330.0)
+                }
+        }
         
-    }
 
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
