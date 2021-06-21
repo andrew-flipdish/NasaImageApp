@@ -15,9 +15,8 @@ struct ListView: View {
     @State var caller: ApiCaller = ApiCaller()
     @State var screenSize = UIScreen.main.bounds
     
-    
     var body: some View {
-
+        
         NavigationView{
             List{
                 ForEach(results, id: \.date) { item in
@@ -30,7 +29,7 @@ struct ListView: View {
                                 .frame(width: screenSize.width, height: 30, alignment: .leading)
                         })
                 }
-            }.navigationTitle("Nasa APOD")
+            }.navigationTitle(String("Nasa APOD"))
         }.onAppear(perform: getDate)
         
         
