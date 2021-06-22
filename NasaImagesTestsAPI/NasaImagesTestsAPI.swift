@@ -54,17 +54,4 @@ class NasaImagesTestsAPI: XCTestCase {
         XCTAssertEqual(test?.count, 7)
     }
     
-    //Test that it return nil when given an invalid API url
-    func testIncorrectUrl() {
-        var test = [NasaResponse]()
-        caller!.callAPIWeek(startDate: String("asdf")) { response in
-            guard let response = response else {
-                return
-
-            }
-            test = response
-        }
-        XCTAssertEqual(test.count, 0)
-    }
-    
 }
