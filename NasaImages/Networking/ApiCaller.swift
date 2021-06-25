@@ -12,8 +12,8 @@ class ApiCaller {
     let api: String = "https://api.nasa.gov/planetary/apod"
     private let apiKey: String = "?api_key=kpWcz70K1HKjXNnvfiTXnJ8P5Z8pOkWEMy5hxOgO"
     
-    func callAPIWeek(startDate: String, completion: @escaping (([NasaResponse]?) -> Void)){
-        guard let url = URL(string: "\(api)\(apiKey)&start_date=\(startDate)") else {
+    func getImagesForTheLastWeek(startDate: String, completion: @escaping (([NasaResponse]?) -> Void)){
+        guard let url = URL(string: "\(api)\(apiKey)&thumbs=True&start_date=\(startDate)") else {
             print("Invalid URL")
             completion(nil)
             return

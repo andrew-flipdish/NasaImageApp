@@ -3,13 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		7244CDFF267CE76300434E67 /* List View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7244CDFE267CE76300434E67 /* List View.swift */; };
-		7291095C267CA52500E2DCC0 /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = 7291095B267CA52500E2DCC0 /* URLImageStore */; };
-		7291095E267CA52500E2DCC0 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 7291095D267CA52500E2DCC0 /* URLImage */; };
+		729428CF2685D93D00124398 /* NasaResponseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729428CE2685D93D00124398 /* NasaResponseViewModel.swift */; };
 		7295BBB5267A3BAD00B04D62 /* NasaImagesTestsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7295BBB4267A3BAD00B04D62 /* NasaImagesTestsAPI.swift */; };
 		7295BBBD267A3E3700B04D62 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7295BBBC267A3E3700B04D62 /* Image.swift */; };
 		729A5792267B9130008743E9 /* ApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729A5791267B9130008743E9 /* ApiCaller.swift */; };
@@ -31,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		7244CDFE267CE76300434E67 /* List View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List View.swift"; sourceTree = "<group>"; };
+		729428CE2685D93D00124398 /* NasaResponseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaResponseViewModel.swift; sourceTree = "<group>"; };
 		7295BBB2267A3BAD00B04D62 /* NasaImagesTestsAPI.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NasaImagesTestsAPI.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7295BBB4267A3BAD00B04D62 /* NasaImagesTestsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaImagesTestsAPI.swift; sourceTree = "<group>"; };
 		7295BBB6267A3BAD00B04D62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,14 +56,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7291095E267CA52500E2DCC0 /* URLImage in Frameworks */,
-				7291095C267CA52500E2DCC0 /* URLImageStore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		729428CD2685D92900124398 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				729428CE2685D93D00124398 /* NasaResponseViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7295BBAB267A0E3300B04D62 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +108,7 @@
 		72A710E22678F31100991069 /* NasaImages */ = {
 			isa = PBXGroup;
 			children = (
+				729428CD2685D92900124398 /* ViewModel */,
 				7295BBAB267A0E3300B04D62 /* Networking */,
 				72A710F42678F32500991069 /* App */,
 				72A710F32678F31F00991069 /* Views */,
@@ -180,10 +187,6 @@
 			dependencies = (
 			);
 			name = NasaImages;
-			packageProductDependencies = (
-				7291095B267CA52500E2DCC0 /* URLImageStore */,
-				7291095D267CA52500E2DCC0 /* URLImage */,
-			);
 			productName = NasaImages;
 			productReference = 72A710E02678F31100991069 /* NasaImages.app */;
 			productType = "com.apple.product-type.application";
@@ -215,9 +218,6 @@
 				Base,
 			);
 			mainGroup = 72A710D72678F31100991069;
-			packageReferences = (
-				7291095A267CA52500E2DCC0 /* XCRemoteSwiftPackageReference "url-image" */,
-			);
 			productRefGroup = 72A710E12678F31100991069 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -260,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				729428CF2685D93D00124398 /* NasaResponseViewModel.swift in Sources */,
 				7244CDFF267CE76300434E67 /* List View.swift in Sources */,
 				72A710E62678F31100991069 /* ContentView.swift in Sources */,
 				7295BBBD267A3E3700B04D62 /* Image.swift in Sources */,
@@ -510,30 +511,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		7291095A267CA52500E2DCC0 /* XCRemoteSwiftPackageReference "url-image" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		7291095B267CA52500E2DCC0 /* URLImageStore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7291095A267CA52500E2DCC0 /* XCRemoteSwiftPackageReference "url-image" */;
-			productName = URLImageStore;
-		};
-		7291095D267CA52500E2DCC0 /* URLImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7291095A267CA52500E2DCC0 /* XCRemoteSwiftPackageReference "url-image" */;
-			productName = URLImage;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 72A710D82678F31100991069 /* Project object */;
 }

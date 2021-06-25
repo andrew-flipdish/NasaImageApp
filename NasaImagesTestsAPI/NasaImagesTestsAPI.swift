@@ -12,6 +12,7 @@ import XCTest
 class NasaImagesTestsAPI: XCTestCase {
     
     var caller: ApiCaller?
+    var test: [NasaResponse]?
 
     override func setUpWithError() throws {
         caller = ApiCaller()
@@ -19,35 +20,33 @@ class NasaImagesTestsAPI: XCTestCase {
 
     override func tearDownWithError() throws {
         caller = nil
+        test = nil
     }
 
     //Test that API doesn't return nil
     func testReturnNotNil() {
-        var test: [NasaResponse]?
         let expectation = self.expectation(description: "Getting Response")
-        caller!.callAPIWeek(startDate: String("2021-06-15")) { response in
+        caller!.getImagesForTheLastWeek(startDate: String("2021-06-15")) { response in
             guard let response = response else {
                 return
 
             }
-            test = response
+            self.test = response
             expectation.fulfill()
         }
         waitForExpectations(timeout: 5, handler: nil)
-        
         XCTAssertNotNil(test)
     }
     
     //Test that API returns an array of 7 objects
     func testReturnSevenItems() {
-        var test: [NasaResponse]?
         let expectation = self.expectation(description: "Getting Response")
-        caller!.callAPIWeek(startDate: String("2021-06-15&end_date=2021-06-21")) { response in
+        caller!.getImagesForTheLastWeek(startDate: String("2021-06-15&end_date=2021-06-21")) { response in
             guard let response = response else {
                 return
 
             }
-            test = response
+            self.test = response
             expectation.fulfill()
         }
         waitForExpectations(timeout: 5, handler: nil)

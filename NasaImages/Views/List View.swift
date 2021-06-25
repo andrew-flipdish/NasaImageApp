@@ -9,19 +9,16 @@ import SwiftUI
 
 struct ListView: View {
     
-    @State private var results = [NasaResponse]()
-    @State private var format: DateFormatter = DateFormatter()
-    @State private var startDate: String = String("")
-    @State var caller: ApiCaller = ApiCaller()
+    @State var viewModel = NasaResponseViewModel()
     @State var screenSize = UIScreen.main.bounds
     
     var body: some View {
         
         NavigationView{
             List{
-                ForEach(results, id: \.date) { item in
+                ForEach(viewModel.results, id: \.date) { item in
                     NavigationLink(
-                        destination: NasaImageView(nasaImage: item),
+                        destination: NasaImageView(nasaResponse: item),
                         label: {
                             Text(String("\(item.date)"))
                                 .font(.body)
@@ -30,31 +27,8 @@ struct ListView: View {
                         })
                 }
             }.navigationTitle(String("Nasa APOD"))
-        }.onAppear(perform: getDate)
-        
-        
+        }.onAppear(perform: viewModel.loadData)
     }
-    
-    func getDate(){
-        self.format.dateFormat = "yyyy-MM-dd"
-        let earlyDate = Calendar.current.date(
-            byAdding: .day,
-          value: -6,
-          to: Date())
-        startDate = format.string(from: earlyDate!)
-        loadData()
-    }
-    
-    func loadData(){
-        caller.callAPIWeek(startDate: startDate) { response in
-            guard let response = response else {
-                return
-
-            }
-            results = response
-        }
-    }
-    
 }
 
 

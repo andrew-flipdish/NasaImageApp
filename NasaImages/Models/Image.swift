@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct NasaResponse: Codable {
+public struct NasaResponse: Codable {
+    var media_type: String = String("image")
     var date: String = String("1901/01/01")
     var url: String = String("https://i.pinimg.com/originals/e1/42/4d/e1424d64b5b36667aa15fe86f6424438.png")
     var title: String = String("Lorem ipsum dolor sit amet")
