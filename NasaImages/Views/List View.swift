@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListView: View {
     
-    @State var viewModel = NasaResponseViewModel()
+    @ObservedObject var viewModel = NasaResponseViewModel()
     @State var screenSize = UIScreen.main.bounds
     
     var body: some View {

@@ -7,11 +7,15 @@
 
 import Foundation
 
-public class NasaResponseViewModel {
+class NasaResponseViewModel: ObservableObject {
     
-    public var results = [NasaResponse]()
+    @Published var results = [NasaResponse]()
     private var format: DateFormatter = DateFormatter()
     private var caller: ApiCaller = ApiCaller()
+    
+    init(){
+        loadData()
+    }
     
     private func getDate() -> String{
         self.format.dateFormat = "yyyy-MM-dd"
@@ -24,7 +28,7 @@ public class NasaResponseViewModel {
         
     }
     
-    public func loadData(){
+    func loadData(){
         let startDate = getDate()
         caller.getImagesForTheLastWeek(startDate: startDate) { response in
             guard let response = response else {
@@ -32,7 +36,6 @@ public class NasaResponseViewModel {
 
             }
             self.results = response
-            print(self.results)
         }
         
     }
