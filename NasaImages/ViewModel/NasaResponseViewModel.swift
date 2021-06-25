@@ -33,11 +33,9 @@ class NasaResponseViewModel: ObservableObject {
         caller.getImagesForTheLastWeek(startDate: startDate) { response in
             guard let response = response else {
                 return
-
             }
             self.results = response
         }
-        
     }
     
 }

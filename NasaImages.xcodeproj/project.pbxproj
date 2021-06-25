@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7244CDFF267CE76300434E67 /* List View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7244CDFE267CE76300434E67 /* List View.swift */; };
+		7244CDFF267CE76300434E67 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7244CDFE267CE76300434E67 /* ListView.swift */; };
 		729428CF2685D93D00124398 /* NasaResponseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729428CE2685D93D00124398 /* NasaResponseViewModel.swift */; };
+		729428D1268622EE00124398 /* MoreDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729428D0268622EE00124398 /* MoreDetailsView.swift */; };
+		729428D32686233500124398 /* LessDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729428D22686233500124398 /* LessDetailsView.swift */; };
+		729428D52686235B00124398 /* MediaImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729428D42686235B00124398 /* MediaImageView.swift */; };
+		729428D72686236F00124398 /* MediaVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729428D62686236F00124398 /* MediaVideoView.swift */; };
 		7295BBB5267A3BAD00B04D62 /* NasaImagesTestsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7295BBB4267A3BAD00B04D62 /* NasaImagesTestsAPI.swift */; };
 		7295BBBD267A3E3700B04D62 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7295BBBC267A3E3700B04D62 /* Image.swift */; };
 		729A5792267B9130008743E9 /* ApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729A5791267B9130008743E9 /* ApiCaller.swift */; };
@@ -29,8 +33,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7244CDFE267CE76300434E67 /* List View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List View.swift"; sourceTree = "<group>"; };
+		7244CDFE267CE76300434E67 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		729428CE2685D93D00124398 /* NasaResponseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaResponseViewModel.swift; sourceTree = "<group>"; };
+		729428D0268622EE00124398 /* MoreDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreDetailsView.swift; sourceTree = "<group>"; };
+		729428D22686233500124398 /* LessDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessDetailsView.swift; sourceTree = "<group>"; };
+		729428D42686235B00124398 /* MediaImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaImageView.swift; sourceTree = "<group>"; };
+		729428D62686236F00124398 /* MediaVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaVideoView.swift; sourceTree = "<group>"; };
 		7295BBB2267A3BAD00B04D62 /* NasaImagesTestsAPI.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NasaImagesTestsAPI.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7295BBB4267A3BAD00B04D62 /* NasaImagesTestsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaImagesTestsAPI.swift; sourceTree = "<group>"; };
 		7295BBB6267A3BAD00B04D62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -138,7 +146,11 @@
 			isa = PBXGroup;
 			children = (
 				72A710E52678F31100991069 /* ContentView.swift */,
-				7244CDFE267CE76300434E67 /* List View.swift */,
+				7244CDFE267CE76300434E67 /* ListView.swift */,
+				729428D0268622EE00124398 /* MoreDetailsView.swift */,
+				729428D22686233500124398 /* LessDetailsView.swift */,
+				729428D42686235B00124398 /* MediaImageView.swift */,
+				729428D62686236F00124398 /* MediaVideoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -260,12 +272,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				729428D32686233500124398 /* LessDetailsView.swift in Sources */,
 				729428CF2685D93D00124398 /* NasaResponseViewModel.swift in Sources */,
-				7244CDFF267CE76300434E67 /* List View.swift in Sources */,
+				7244CDFF267CE76300434E67 /* ListView.swift in Sources */,
+				729428D52686235B00124398 /* MediaImageView.swift in Sources */,
 				72A710E62678F31100991069 /* ContentView.swift in Sources */,
 				7295BBBD267A3E3700B04D62 /* Image.swift in Sources */,
+				729428D1268622EE00124398 /* MoreDetailsView.swift in Sources */,
 				72A710E42678F31100991069 /* NasaImagesApp.swift in Sources */,
 				729A5792267B9130008743E9 /* ApiCaller.swift in Sources */,
+				729428D72686236F00124398 /* MediaVideoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
